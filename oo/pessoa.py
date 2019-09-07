@@ -10,6 +10,15 @@ class Pessoa:
     def cumprimentar(self):
         return f'Olá {id(self)}'
 
+    @staticmethod  ##decorator 1 para metodo de classe
+    def metodo_estatico(): #metodo de classe: metodo que independente do objeto, só funciona como uma função da classe
+        ## logica que independa do objeto ## como nao depende da instancia, nao exige self
+        return 42
+
+    @classmethod  ##decorator 2 para metodo de classe
+    def nomes_e_atributos_de_classe(cls):
+        return f'{cls.olhos}'
+
 
 if __name__ == "__main__":
     murilo = Pessoa(nome="Murilo Pai")
@@ -23,6 +32,10 @@ if __name__ == "__main__":
 
     cesar.sobrenome = "Drumond" ## criado atributo dinâmico
     del cesar.filhos ##removido atributo dinâmico
-    # atributos dinâmicos = atributos criados em tempo de execução, específico para um objeto ou situação
+                    # atributos dinâmicos = atributos criados em tempo de execução, específico para um objeto ou situação
+    cesar.olhos = 1
     print(cesar.__dict__) # método que exibe os atributos de cada objeto (instancia)
     print(murilo.__dict__)
+
+    print(Pessoa.metodo_estatico(), cesar.metodo_estatico()) ## duas formas de executar metodo estático
+    print(Pessoa.nomes_e_atributos_de_classe(), murilo.nomes_e_atributos_de_classe()) ## execucao do generator @classmethod
